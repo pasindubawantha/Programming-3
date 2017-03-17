@@ -1,4 +1,9 @@
 /*
+Compiled on:
+java version "1.8.0_121"
+Java(TM) SE Runtime Environment (build 1.8.0_121-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)
+
 Qection :
 1. Write and run a Java program that prompts the user for his or her last name and first name
 separately and prints a greeting like this:
