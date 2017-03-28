@@ -24,27 +24,127 @@ class Calandar {
 				return true;
 			}else{
 				return false;
-			};
+			}
 		}
-		else{
-			return false;
-		};
+		return false;
 
 	}
 
 	private static void printCalandar(int year, String month, String dayOne){
-		String dashes "--------------------";
+		String dashes = "----------------------------";
 		System.out.println(dashes);
 		System.out.println("        " + month + " " + year);
 		System.out.println(dashes);
-		System.out.println("SUN MON TUE WED THU FRI SAT")
-		System.out.println(dashes)
+		System.out.println("SUN MON TUE WED THU FRI SAT");
+		System.out.println(dashes);
+		int noOfDays = getNoOfDays(year, month);
+		int startingDate = getStartingDate(dayOne);
+		for(int line = 1 ; line <= ((noOfDays + startingDate)/7) ; line++ ){
+			if(line == 1){
+				makeCalandarLine(startingDate, 1, dashes);
+			}
+			else{
+				int startDate = (line * 7) - startingDate; 
+				makeCalandarLine(0, startDate, dashes);
+			} 
+		}
+
 	}
 
-	private static getNoOfDays(int year, String month){
-		switch(month){
-			"January"
+	private static int getStartingDate(String dayOne){
+		int date = 0;
+		dayOne = dayOne.toLowerCase().substring(0,2);
+		switch(dayOne){
+			case "mon":
+				date = 1;
+				break;
+			case "tue":
+				date = 2;
+				break;
+			case "wed":
+				date = 3;
+				break;
+			case "thu":
+				date = 4;
+				break;
+			case "fri":
+				date = 5;
+				break;
+			case "sat":
+				date = 6;
+				break;
 		}
+		return date;
+	}
+
+	private static void makeCalandarLine(int noEmptyAtFirst, int startDate, String dashes){
+		String printString = "";
+		int date = startDate;
+		for(int i = 1 ; i < 8; i++){
+			if(i < noEmptyAtFirst){
+				printString += "     ";
+			}
+			else if(date > 9){
+				printString += date + "   ";
+				date++;
+			}
+			else{
+				printString += date + "  ";
+				date++;
+			}
+		}
+		System.out.println(printString);
+		System.out.println(dashes);
+	}
+
+
+	private static int getNoOfDays(int year, String month){
+		month = month.toLowerCase();
+		int noOfDays = 0;
+		switch(month){
+			case "january":
+				noOfDays = 30;
+				break;
+			case "february":
+				if(isLeapYear(year)){
+					noOfDays = 29;
+				}
+				else{
+					noOfDays = 28;
+				}
+				break;
+			case "march":
+				noOfDays = 31;
+				break;
+			case "april":
+				noOfDays = 30;
+				break;
+			case "may":
+				noOfDays = 31;
+				break;
+			case "june":
+				noOfDays = 30;
+				break;
+			case "july":
+				noOfDays = 31;
+				break;
+			case "august":
+				noOfDays = 31;
+				break;
+			case "september":
+				noOfDays = 30;
+				break;
+			case "october":
+				noOfDays = 31;
+				break;
+			case "november":
+				noOfDays = 30;
+				break;
+			case "december":
+				noOfDays = 31;
+				break;
+		}
+		return noOfDays;
 	}
 
 	public static void main(String args[]){
@@ -52,8 +152,9 @@ class Calandar {
 		System.out.print("Year : ");
 		int year = keyboardScanner.nextInt(); 
 		System.out.print("Month : ");
-		String month = keyboardScanner.nextLine();
+		String month = keyboardScanner.next();
 		System.out.print("1st day of " + month + " : ");
-		String dayOne = keyboardScanner.nextLine();
+		String dayOne = keyboardScanner.next();
+		printCalandar(year, month, dayOne);
 	}
 }
