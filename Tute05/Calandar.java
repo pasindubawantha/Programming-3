@@ -41,11 +41,11 @@ class Calandar {
 		int startingDate = getStartingDate(dayOne);
 		for(int line = 1 ; line <= ((noOfDays + startingDate)/7) ; line++ ){
 			if(line == 1){
-				makeCalandarLine(startingDate, 1, dashes);
+				makeCalandarLine(startingDate, 1, noOfDays, dashes);
 			}
 			else{
 				int startDate = (line * 7) - startingDate; 
-				makeCalandarLine(0, startDate, dashes);
+				makeCalandarLine(0, startDate, noOfDays, dashes);
 			} 
 		}
 
@@ -53,7 +53,7 @@ class Calandar {
 
 	private static int getStartingDate(String dayOne){
 		int date = 0;
-		dayOne = dayOne.toLowerCase().substring(0,2);
+		dayOne = dayOne.toLowerCase().substring(0,3);
 		switch(dayOne){
 			case "mon":
 				date = 1;
@@ -77,19 +77,19 @@ class Calandar {
 		return date;
 	}
 
-	private static void makeCalandarLine(int noEmptyAtFirst, int startDate, String dashes){
+	private static void makeCalandarLine(int noEmptyAtFirst, int startDate, int endDate, String dashes){
 		String printString = "";
 		int date = startDate;
 		for(int i = 1 ; i < 8; i++){
-			if(i < noEmptyAtFirst){
-				printString += "     ";
+			if(i <= noEmptyAtFirst){
+				printString += "    ";
 			}
-			else if(date > 9){
-				printString += date + "   ";
+			else if(date < 9){
+				printString += " " + date + "  ";
 				date++;
 			}
-			else{
-				printString += date + "  ";
+			else if(date <= endDate){//end date is always > 9
+				printString += " " + date + " ";
 				date++;
 			}
 		}
