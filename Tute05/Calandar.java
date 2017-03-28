@@ -99,13 +99,13 @@ class Calandar {
 
 
 	private static int getNoOfDays(int year, String month){
-		month = month.toLowerCase();
+		month = month.toLowerCase().substring(0,3);
 		int noOfDays = 0;
 		switch(month){
-			case "january":
+			case "jan":
 				noOfDays = 30;
 				break;
-			case "february":
+			case "feb":
 				if(isLeapYear(year)){
 					noOfDays = 29;
 				}
@@ -113,34 +113,34 @@ class Calandar {
 					noOfDays = 28;
 				}
 				break;
-			case "march":
+			case "mar":
 				noOfDays = 31;
 				break;
-			case "april":
+			case "apr":
 				noOfDays = 30;
 				break;
 			case "may":
 				noOfDays = 31;
 				break;
-			case "june":
+			case "jun":
 				noOfDays = 30;
 				break;
-			case "july":
+			case "jul":
 				noOfDays = 31;
 				break;
-			case "august":
+			case "aug":
 				noOfDays = 31;
 				break;
-			case "september":
+			case "sep":
 				noOfDays = 30;
 				break;
-			case "october":
+			case "oct":
 				noOfDays = 31;
 				break;
-			case "november":
+			case "nov":
 				noOfDays = 30;
 				break;
-			case "december":
+			case "dec":
 				noOfDays = 31;
 				break;
 		}
